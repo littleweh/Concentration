@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     @IBOutlet private weak var flipCountLabel: UILabel!
 
     @IBAction func newGameButtonTapped(_ sender: UIButton) {
-        emojiChoices = emojiThemesObject[Theme(rawValue:Theme.count.arc4random)!]!
+        emojiChoices = getEmojis()
         game.newGame(numberOfPairsOfCards: numberOfPairsOfCards)
         updateViewFromModel()
     }
@@ -56,9 +56,33 @@ class ViewController: UIViewController {
 
     }
 
-    // private first, then think about it 
+    // private first, then think about it
 
-    private var emojiChoices: EmojisCollection = emojiThemesObject[Theme(rawValue:Theme.count.arc4random)!]!
+    private var themes: [Theme] = [
+        Theme.animals(emojis: Themes.animalEmojis),
+        Theme.flags(emojis: Themes.flagsEmojis),
+        Theme.fruits(emojis: Themes.fruitsEmojis),
+        Theme.sports(emojis: Themes.sportsEmojis),
+        Theme.stationary(emojis: Themes.stationaryEmojis),
+        Theme.transportation(emojis: Themes.transportationEmojis)
+    ]
+
+    lazy private var emojiChoices: EmojisCollection = {
+        let emojis: EmojisCollection = getEmojis()
+        return emojis
+    } ()
+
+    private func getEmojis() -> EmojisCollection {
+        let randomIndex = themes.count.arc4random
+        switch themes[randomIndex] {
+        case .animals(let emojis): return emojis
+        case .flags(let emojis): return emojis
+        case .fruits(let emojis): return emojis
+        case .sports(let emojis): return emojis
+        case .stationary(let emojis): return emojis
+        case .transportation(let emojis): return emojis
+        }
+    }
 
     private var emojiDictionary = [Int: String]()
 

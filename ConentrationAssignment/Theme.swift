@@ -9,23 +9,23 @@
 import Foundation
 typealias EmojisCollection = [String]
 
-let emojiThemesObject: [Theme: EmojisCollection] = [
-    .animals: Themes.animalEmojis,
-    .fruits: Themes.fruitsEmojis,
-    .sports: Themes.sportsEmojis,
-    .flags: Themes.flagsEmojis,
-    .transportation: Themes.transportationEmojis,
-    .stationary: Themes.stationaryEmojis
-]
-
-enum Theme: Int {
-    case animals = 0, fruits, sports, flags, transportation, stationary
-    static let count: Int = {
-        var max: Int = 0
-        while let _ = Theme(rawValue: max) {max += 1}
-        return max
-    }()
+enum Theme {
+    case animals(emojis: EmojisCollection)
+    case fruits(emojis: EmojisCollection)
+    case sports(emojis: EmojisCollection)
+    case flags(emojis: EmojisCollection)
+    case transportation(emojis: EmojisCollection)
+    case stationary(emojis: EmojisCollection)
 }
+//
+//enum Theme: Int {
+//    case animals = 0, fruits, sports, flags, transportation, stationary
+//    static let count: Int = {
+//        var max: Int = 0
+//        while let _ = Theme(rawValue: max) {max += 1}
+//        return max
+//    }()
+//}
 
 struct Themes {
     static private(set) var animalEmojis: EmojisCollection = [
