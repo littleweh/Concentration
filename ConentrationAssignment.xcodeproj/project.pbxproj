@@ -14,6 +14,7 @@
 		79152DA62047FC4600434D43 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79152DA42047FC4600434D43 /* LaunchScreen.storyboard */; };
 		79152DAF204808F800434D43 /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79152DAE204808F800434D43 /* Concentration.swift */; };
 		79152DB12048092E00434D43 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79152DB02048092E00434D43 /* Card.swift */; };
+		7973367F204D2AEE008F2DF2 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7973367E204D2AEE008F2DF2 /* Theme.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		79152DA72047FC4600434D43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79152DAE204808F800434D43 /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Concentration.swift; path = "Supporting Files/Concentration.swift"; sourceTree = "<group>"; };
 		79152DB02048092E00434D43 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		7973367E204D2AEE008F2DF2 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				79152DA72047FC4600434D43 /* Info.plist */,
 				79152DAE204808F800434D43 /* Concentration.swift */,
 				79152DB02048092E00434D43 /* Card.swift */,
+				7973367E204D2AEE008F2DF2 /* Theme.swift */,
 			);
 			path = ConentrationAssignment;
 			sourceTree = "<group>";
@@ -152,6 +155,7 @@
 			files = (
 				79152D9E2047FC4600434D43 /* ViewController.swift in Sources */,
 				79152D9C2047FC4600434D43 /* AppDelegate.swift in Sources */,
+				7973367F204D2AEE008F2DF2 /* Theme.swift in Sources */,
 				79152DAF204808F800434D43 /* Concentration.swift in Sources */,
 				79152DB12048092E00434D43 /* Card.swift in Sources */,
 			);

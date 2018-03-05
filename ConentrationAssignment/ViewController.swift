@@ -18,25 +18,18 @@ class ViewController: UIViewController {
         }
     }
 
-    private(set) var flipCount = 0 {
-        didSet {
-            flipCountLabel.text = "Flips: \(flipCount)"
-        }
-    }
-
     @IBOutlet private weak var newGameButton: UIButton!
     @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet private weak var flipCountLabel: UILabel!
 
     @IBAction func newGameButtonTapped(_ sender: UIButton) {
+        emojiChoices = emojiThemesObject[Theme(rawValue:Theme.count.arc4random)!]!
         game.newGame(numberOfPairsOfCards: numberOfPairsOfCards)
         updateViewFromModel()
-        flipCount = 0
     }
 
     @IBAction private func touchCard(_ sender: UIButton) {
-        flipCount += 1
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -58,13 +51,14 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 0.06274510175, green: 0, blue: 0.1921568662, alpha: 0) : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             }
         }
+
+        flipCountLabel.text = "Flips: \(game.flipCount)"
+
     }
 
     // private first, then think about it 
 
-    private var emojiChoices = [
-        "🍓", "🍎", "🍌", "🍍", "🍉", "🍒", "🍇", "🍋", "🍐", "🍊", "🍏", "🍈", "🥥", "🥝", "🍑"
-    ]
+    private var emojiChoices: EmojisCollection = emojiThemesObject[Theme(rawValue:Theme.count.arc4random)!]!
 
     private var emojiDictionary = [Int: String]()
 

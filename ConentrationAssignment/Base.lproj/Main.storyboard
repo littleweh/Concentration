@@ -231,7 +231,7 @@
                                 <rect key="frame" x="112.66666666666669" y="742" width="150" height="44"/>
                                 <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="150" id="bEI-Cf-EBV"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="bEI-Cf-EBV"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
                                 <state key="normal" title="New Game">

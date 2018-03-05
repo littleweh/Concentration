@@ -44,6 +44,9 @@ class Concentration {
             "Concentration.chooseCard(at: \(index)): chosen index not in the cards"
         )
         // ignore cards are matched
+
+        flipCount += 1
+
         if !cards[index].isMatched {
             // 3 cases:
             // 1) no cards are faced up, just flip the card
@@ -73,6 +76,8 @@ class Concentration {
     func newGame(numberOfPairsOfCards: Int) {
         //countableRange
         cards = []
+        flipCount = 0
+
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
