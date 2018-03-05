@@ -10,10 +10,37 @@ import Foundation
 
 class Concentration {
 
-    var cards = [Card]()
-    var indexOfOneAndOnlyFaceUpCard: Int?
+    // you can see the cards, but setting it is my job
+    // value types
+    private(set) var cards = [Card]()
+
+    // lecture 3
+    private var indexOfOneAndOnlyFaceUpCard: Int? {
+        get {
+            var foundIndex: Int?
+            for index in cards.indices {
+                if cards[index].isFaceUp {
+                    if foundIndex == nil {
+                        foundIndex = index
+                    } else {
+                        return nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        set(newValue) { // local variable default: newValue
+            for index in cards.indices {
+                cards[index].isFaceUp = (index == newValue)
+            }
+        }
+    }
 
     func chooseCard(at index: Int) {
+        assert(
+            cards.indices.contains(index),
+            "Concentration.chooseCard(at: \(index)): chosen index not in the cards"
+        )
         // ignore cards are matched
         if !cards[index].isMatched {
             // 3 cases:
@@ -27,13 +54,13 @@ class Concentration {
                     cards[index].isMatched = true
                 }
                 cards[index].isFaceUp = true
-                indexOfOneAndOnlyFaceUpCard = nil
+//                indexOfOneAndOnlyFaceUpCard = nil
             } else {
-                // either no cards or 2 cards are face up
-                for flipDownIndex in cards.indices {
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
+//                // either no cards or 2 cards are face up
+//                for flipDownIndex in cards.indices {
+//                    cards[flipDownIndex].isFaceUp = false
+//                }
+//                cards[index].isFaceUp = true
                 indexOfOneAndOnlyFaceUpCard = index
             }
 
@@ -42,6 +69,10 @@ class Concentration {
     }
 
     init(numberOfPairsOfCards: Int) {
+        assert(
+            numberOfPairsOfCards > 0,
+            "Concentration.init(\(numberOfPairsOfCards)): you must have at least one pair of cards"
+        )
         //countableRange
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
