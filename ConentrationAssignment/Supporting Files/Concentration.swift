@@ -13,6 +13,8 @@ class Concentration {
     // you can see the cards, but setting it is my job
     // value types
     private(set) var cards = [Card]()
+    private(set) var flipCount: Int = 0
+    private(set) var score: Int = 0
 
     // lecture 3
     private var indexOfOneAndOnlyFaceUpCard: Int? {
@@ -68,12 +70,9 @@ class Concentration {
         
     }
 
-    init(numberOfPairsOfCards: Int) {
-        assert(
-            numberOfPairsOfCards > 0,
-            "Concentration.init(\(numberOfPairsOfCards)): you must have at least one pair of cards"
-        )
+    func newGame(numberOfPairsOfCards: Int) {
         //countableRange
+        cards = []
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
@@ -86,10 +85,18 @@ class Concentration {
             cards.swapAt(unshuffledCardsLastIndex, randomIndex)
 
             // first ver
-//            let randomIndex_ = (cards.count - index).arc4random
-//            cards.swapAt(index, randomIndex + index)
+            //            let randomIndex_ = (cards.count - index).arc4random
+            //            cards.swapAt(index, randomIndex + index)
 
         }
+    }
+
+    init(numberOfPairsOfCards: Int) {
+        assert(
+            numberOfPairsOfCards > 0,
+            "Concentration.init(\(numberOfPairsOfCards)): you must have at least one pair of cards"
+        )
+        newGame(numberOfPairsOfCards: numberOfPairsOfCards)
 
     }
 

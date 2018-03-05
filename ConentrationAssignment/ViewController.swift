@@ -24,9 +24,16 @@ class ViewController: UIViewController {
         }
     }
 
+    @IBOutlet private weak var newGameButton: UIButton!
+    @IBOutlet private weak var scoreLabel: UILabel!
     @IBOutlet private var cardButtons: [UIButton]!
     @IBOutlet private weak var flipCountLabel: UILabel!
 
+    @IBAction func newGameButtonTapped(_ sender: UIButton) {
+        game.newGame(numberOfPairsOfCards: numberOfPairsOfCards)
+        updateViewFromModel()
+        flipCount = 0
+    }
 
     @IBAction private func touchCard(_ sender: UIButton) {
         flipCount += 1
@@ -55,7 +62,9 @@ class ViewController: UIViewController {
 
     // private first, then think about it 
 
-    private var emojiChoices = ["🍓", "🧀", "🐶", "🐸", "🐌", "🍉", "🎤"]
+    private var emojiChoices = [
+        "🍓", "🍎", "🍌", "🍍", "🍉", "🍒", "🍇", "🍋", "🍐", "🍊", "🍏", "🍈", "🥥", "🥝", "🍑"
+    ]
 
     private var emojiDictionary = [Int: String]()
 
