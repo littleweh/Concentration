@@ -78,7 +78,18 @@ class Concentration {
             let card = Card()
             cards += [card, card]
         }
-        // TODO: Shuffle the cards
+        // TODO: Shuffle the cards: Knuth Shuffle
+        for index in cards.indices {
+            // last ver
+            let unshuffledCardsLastIndex = cards.count - 1 - index
+            let randomIndex = unshuffledCardsLastIndex.arc4random
+            cards.swapAt(unshuffledCardsLastIndex, randomIndex)
+
+            // first ver
+//            let randomIndex_ = (cards.count - index).arc4random
+//            cards.swapAt(index, randomIndex + index)
+
+        }
 
     }
 
