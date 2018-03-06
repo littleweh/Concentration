@@ -9,9 +9,16 @@
 import Foundation
 
 struct Card {
-    var isFaceUp = false
+    var isFaceUp = false {
+        didSet {
+            if isFaceUp {
+                faceUpCount += 1
+            }
+        }
+    }
     var isMatched = false
     var identifier: Int
+    var faceUpCount: Int = 0
 
     private static var identifierFactory = 0
 

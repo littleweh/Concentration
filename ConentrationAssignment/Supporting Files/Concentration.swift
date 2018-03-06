@@ -8,6 +8,10 @@
 
 import Foundation
 
+enum ScoreScenario {
+    case match, penalty, none
+}
+
 class Concentration {
 
     // you can see the cards, but setting it is my job
@@ -15,6 +19,8 @@ class Concentration {
     private(set) var cards = [Card]()
     private(set) var flipCount: Int = 0
     private(set) var score: Int = 0
+    private var winScore = 2
+    private var penaltyScore = -1
 
     // lecture 3
     private var indexOfOneAndOnlyFaceUpCard: Int? {
@@ -38,6 +44,18 @@ class Concentration {
         }
     }
 
+    func setScore(with scenario: ScoreScenario) {
+        switch scenario {
+        case .match:
+            score += winScore
+        case .penalty:
+            score += penaltyScore
+        case .none:
+            break
+        }
+        
+    }
+
     func chooseCard(at index: Int) {
         assert(
             cards.indices.contains(index),
@@ -51,14 +69,27 @@ class Concentration {
             // 3 cases:
             // 1) no cards are faced up, just flip the card
             // 2) two cards are faced up, click a new card, the two cards should be flipped over (face down)
-            // 3) only one card is faced up,
+            // 3) only one card is faced up
+
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // check if cards match
+
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+
+                    setScore(with: .match)
+                } else {
+                    if cards[index].faceUpCount > 0 {
+                        setScore(with: .penalty)
+                    }
+                    if cards[matchIndex].faceUpCount > 1 {
+                        setScore(with: .penalty)
+                    }
                 }
+
                 cards[index].isFaceUp = true
+
 //                indexOfOneAndOnlyFaceUpCard = nil
             } else {
 //                // either no cards or 2 cards are face up
@@ -70,30 +101,30 @@ class Concentration {
             }
 
         }
-        
     }
 
     func newGame(numberOfPairsOfCards: Int) {
         //countableRange
         cards = []
         flipCount = 0
+        score = 0
 
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
         // TODO: Shuffle the cards: Knuth Shuffle
-        for index in cards.indices {
-            // last ver
-            let unshuffledCardsLastIndex = cards.count - 1 - index
-            let randomIndex = unshuffledCardsLastIndex.arc4random
-            cards.swapAt(unshuffledCardsLastIndex, randomIndex)
-
-            // first ver
-            //            let randomIndex_ = (cards.count - index).arc4random
-            //            cards.swapAt(index, randomIndex + index)
-
-        }
+//        for index in cards.indices {
+//            // last ver
+//            let unshuffledCardsLastIndex = cards.count - 1 - index
+//            let randomIndex = unshuffledCardsLastIndex.arc4random
+//            cards.swapAt(unshuffledCardsLastIndex, randomIndex)
+//
+//            // first ver
+//            //            let randomIndex_ = (cards.count - index).arc4random
+//            //            cards.swapAt(index, randomIndex + index)
+//
+//        }
     }
 
     init(numberOfPairsOfCards: Int) {
