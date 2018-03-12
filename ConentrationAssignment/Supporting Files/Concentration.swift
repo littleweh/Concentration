@@ -12,7 +12,7 @@ enum ScoreScenario {
     case match, penalty, none
 }
 
-class Concentration {
+struct Concentration {
 
     // you can see the cards, but setting it is my job
     // value types
@@ -42,13 +42,9 @@ class Concentration {
                 cards[index].isFaceUp = (index == newValue)
             }
         }
-        //                for flipDownIndex in cards.indices {
-        //                    cards[flipDownIndex].isFaceUp = false
-        //                }
-        //                cards[index].isFaceUp = true
     }
 
-    func setScore(with scenario: ScoreScenario) {
+    mutating func setScore(with scenario: ScoreScenario) {
         switch scenario {
         case .match:
             score += winScore
@@ -60,7 +56,7 @@ class Concentration {
         
     }
 
-    func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) {
         assert(
             cards.indices.contains(index),
             "Concentration.chooseCard(at: \(index)): chosen index not in the cards"
@@ -94,17 +90,14 @@ class Concentration {
 
                 cards[index].isFaceUp = true
 
-//                indexOfOneAndOnlyFaceUpCard = nil
             } else {
-//                // either no cards or 2 cards are face up
-
                 indexOfOneAndOnlyFaceUpCard = index
             }
 
         }
     }
 
-    func newGame(numberOfPairsOfCards: Int) {
+    mutating func newGame(numberOfPairsOfCards: Int) {
         //countableRange
         cards = []
         flipCount = 0
