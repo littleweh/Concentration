@@ -42,6 +42,10 @@ class Concentration {
                 cards[index].isFaceUp = (index == newValue)
             }
         }
+        //                for flipDownIndex in cards.indices {
+        //                    cards[flipDownIndex].isFaceUp = false
+        //                }
+        //                cards[index].isFaceUp = true
     }
 
     func setScore(with scenario: ScoreScenario) {
@@ -93,10 +97,7 @@ class Concentration {
 //                indexOfOneAndOnlyFaceUpCard = nil
             } else {
 //                // either no cards or 2 cards are face up
-//                for flipDownIndex in cards.indices {
-//                    cards[flipDownIndex].isFaceUp = false
-//                }
-//                cards[index].isFaceUp = true
+
                 indexOfOneAndOnlyFaceUpCard = index
             }
 
@@ -113,18 +114,18 @@ class Concentration {
             let card = Card()
             cards += [card, card]
         }
-        // TODO: Shuffle the cards: Knuth Shuffle
-//        for index in cards.indices {
-//            // last ver
-//            let unshuffledCardsLastIndex = cards.count - 1 - index
-//            let randomIndex = unshuffledCardsLastIndex.arc4random
-//            cards.swapAt(unshuffledCardsLastIndex, randomIndex)
-//
-//            // first ver
-//            //            let randomIndex_ = (cards.count - index).arc4random
-//            //            cards.swapAt(index, randomIndex + index)
-//
-//        }
+//         TODO: Shuffle the cards: Knuth Shuffle
+        for index in cards.indices {
+            // last ver
+            let unshuffledCardsLastIndex = cards.count - 1 - index
+            let randomIndex = unshuffledCardsLastIndex.arc4random
+            cards.swapAt(unshuffledCardsLastIndex, randomIndex)
+
+            // first ver
+            //            let randomIndex_ = (cards.count - index).arc4random
+            //            cards.swapAt(index, randomIndex + index)
+
+        }
     }
 
     init(numberOfPairsOfCards: Int) {
